@@ -18,8 +18,10 @@ public class Cliente{
       try {
       String firstLine = "PING " + addr.getHostName() + "(" + addr.getHostAddress() + ")"
           + "56(84) bytes of data.";
-      String theLine = "64 bytes from " + addr.getHostName() + "(" + addr.getHostAddress()
+      String templateAnswer = "64 bytes from " + addr.getHostName() + "(" + addr.getHostAddress()
           + "): icmp_req=";
+      String templateStatistics =
+
       InetAddress server= InetAddress.getByName(hostname);
       BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
       DatagramSocket socket = new DatagramSocket();
@@ -27,8 +29,8 @@ public class Cliente{
       int cont = 0;
       double time = 0;
       while (cont < 4) {
-        byte[] dataOut = new byte[theLine.length()];
-        dataOut = theLine.getBytes();
+        byte[] dataOut = new byte[templateAnswer.length()];
+        dataOut = templateAnswer.getBytes();
         DatagramPacket sendPacket = new DatagramPacket(dataOut, dataOut.length, server, 8888);
         time = 0;
         socket.send(sendPacket);
