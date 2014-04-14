@@ -41,21 +41,25 @@ public class Cliente{
         transmitted++;
         byte[] dataIn = new byte[256];
         DatagramPacket receivePacket = new DatagramPacket(dataIn, 256);
-        socket.receive (receivePacket);
-        if (receivePacket != null){
+        socket.setSoTimeout(1000);
+        try{
+            socket.receive (receivePacket);
             received++;
             time = System.currentTimeMillis() - time;
             dTime = time * .01;
             min = (dTime < min) ? dTime : min;
             max = (dTime > max) ? dTime : max;
             avg += dTime;
+            String s = new String(receivePacket.getData(), 0, receivePacket.getLength());
+            System.out.format(s + "%d time=%.2f ms%n", cont, time*.01);
+        } catch (SocketTimeoutException to){
+            time = System.currentTimeMillis() - time;
+            System.out.println("Timeout! Packet lost.");
         }
-        String s = new String(receivePacket.getData(), 0, receivePacket.getLength());
-        System.out.format(s + "%d time=%.2f ms%n", cont, time*.01);
         cont ++;
       }  // end while
          System.out.println(templateStatistics);
-         System.out.format("%d transmitted, %d received, %d packet loss%n", transmitted, received, ( int ) (packetLoss * 100));
+         System.out.format("%d transmitted, %d received, %d packet loss %n", transmitted, received, 100 - (int)(1.0 * received / transmitted * 100));
          System.out.format("min/avg/max = %.3f/%.3f/%.3f ms%n", min, avg / received, max);
      }  // end try
      catch (UnknownHostException e) {System.err.println(e);}

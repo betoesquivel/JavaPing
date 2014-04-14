@@ -20,7 +20,10 @@ public class Servidor
 		socket.receive(packet);
         Random randno = new Random();
         Thread.sleep(randno.nextInt(10) + 10);
-        socket.send(packet);
+        Random randResponse = new Random();
+        if (randResponse.nextInt(5) != 0){
+            socket.send(packet);
+        }
 	   }catch (IOException ioe){
 		System.err.println ("Error : " + ioe);
 	   }catch (InterruptedException e){
