@@ -56,7 +56,7 @@ public class Cliente{
       }  // end while
          System.out.println(templateStatistics);
          System.out.format("%d transmitted, %d received, %d packet loss%n", transmitted, received, ( int ) (packetLoss * 100));
-         System.out.format("min/avg/max = %.3f/%.3f/%.3f ms%n", min, avg, max);
+         System.out.format("min/avg/max = %.3f/%.3f/%.3f ms%n", min, avg / received, max);
      }  // end try
      catch (UnknownHostException e) {System.err.println(e);}
      catch (SocketException se) {System.err.println(se);}

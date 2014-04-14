@@ -1,6 +1,6 @@
 import java.net.*;
 import java.io.*;
-
+import java.util.Random;
 public class Servidor
 {
    static DatagramSocket socket;
@@ -18,10 +18,14 @@ public class Servidor
 	   try{
 		DatagramPacket packet = new DatagramPacket(buffer, 4096);
 		socket.receive(packet);
-		socket.send(packet);
+        Random randno = new Random();
+        Thread.sleep(randno.nextInt(10) + 10);
+        socket.send(packet);
 	   }catch (IOException ioe){
 		System.err.println ("Error : " + ioe);
-	   }
+	   }catch (InterruptedException e){
+        System.err.println ("Error : " + e);
+       }
 	}
    }
 }
