@@ -1,15 +1,16 @@
 import java.net.*;
 import java.io.*;
 
-public class Servidor 
+public class Servidor
 {
    static DatagramSocket socket;
 
    public static void main(String args[]){
 
 	byte[] buffer = new byte[4096];
+
       try{
-           socket = new DatagramSocket(7);
+           socket = new DatagramSocket(8888);
       } catch (Exception e){
 	    System.err.println ("Unable to bind port");
 	}
@@ -21,6 +22,6 @@ public class Servidor
 	   }catch (IOException ioe){
 		System.err.println ("Error : " + ioe);
 	   }
-	}	
+	}
    }
 }
