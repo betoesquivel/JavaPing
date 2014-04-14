@@ -16,21 +16,28 @@ public class Cliente{
 	   return;
 	}
       try {
-      String theLine = "ping";
-      InetAddress server = InetAddress.getByName(hostname);
+      String firstLine = "PING " + addr.getHostName() + "(" + addr.getHostAddress() + ")"
+          + "56(84) bytes of data.";
+      String theLine = "64 bytes from " + addr.getHostName() + "(" + addr.getHostAddress()
+          + "): icmp_req=";
+      InetAddress server= InetAddress.getByName(hostname);
       BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
       DatagramSocket socket = new DatagramSocket();
+      System.out.println(firstLine);
       int cont = 0;
+      double time = 0;
       while (cont < 4) {
         byte[] dataOut = new byte[theLine.length()];
         dataOut = theLine.getBytes();
         DatagramPacket sendPacket = new DatagramPacket(dataOut, dataOut.length, server, 8888);
+        time = 0;
         socket.send(sendPacket);
         byte[] dataIn = new byte[256];
         DatagramPacket receivePacket = new DatagramPacket(dataIn, 256);
         socket.receive (receivePacket);
+        time = 0;
         String s = new String(receivePacket.getData(), 0, receivePacket.getLength());
-        System.out.println(cont + " " + s);
+        System.out.println(s + cont + " time=" + time +  " ms");
         cont ++;
       }  // end while
      }  // end try
