@@ -8,6 +8,7 @@ public class Servidor
    public static void main(String args[]){
 
 	byte[] buffer = new byte[4096];
+    int porcentajePerdida = Integer.parseInt(args[0]);
 
       try{
            socket = new DatagramSocket(8888);
