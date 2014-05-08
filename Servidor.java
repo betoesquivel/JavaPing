@@ -11,7 +11,16 @@ public class Servidor
     int porcentajePerdida = 0;
     if (args[0]!=null){
         porcentajePerdida = Integer.parseInt(args[0]);
+        if (porcentajePerdida < 0){
+            porcentajePerdida = 0;
+            System.out.println("Mínimo permitido de perdida es 0.");
+        } else if (porcentajePerdida > 20){
+            porcentajePerdida = 20;
+            System.out.println("Máximo permitido de perdida es 20.");
+        }
     }
+    System.out.println("Inicializando servidor simulando " + porcentajePerdida
+            + "% de pérdida de paquetes...");
 
     int[] randomLossPool = new int[100];
     //Fill array with 1s
