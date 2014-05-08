@@ -2,10 +2,10 @@ import java.net.*;
 import java.io.*;
 import java.util.*;
 
-public class Cliente{
+public class Ping{
    public static void main(String args[]){
 	if (args.length != 1){
-		System.err.println ("Syntax - java Cliente hostname");
+		System.err.println ("Syntax - java Ping hostname");
 		return;
 	}
             String hostname = args[0];

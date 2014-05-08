@@ -1,2 +1,0 @@
-java Cliente localhost
-pause
