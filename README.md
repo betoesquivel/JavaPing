@@ -1,8 +1,8 @@
-JavaPing
-Autores/Authors: 
-José Alberto Esquivel Patiño A01139626
-Edgar Ovidio Villarreal Treviño A01139665
-========
+#JavaPing
+##Autores/Authors: 
+###José Alberto Esquivel Patiño A01139626
+###Edgar Ovidio Villarreal Treviño A01139665
+
 Proyecto final para mi clase de redes...
 Final project for my networking class...
 
